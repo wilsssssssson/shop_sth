@@ -1,4 +1,5 @@
 
+
 export const constantRoute = [
     {
         path:'/login',
@@ -8,7 +9,15 @@ export const constantRoute = [
     {
         path:'/',
         component:()=>import('@/views/home/index.vue'),
-        name:'home'
+        name:'layout',
+        children:[
+            {
+                path:'/',
+                component:()=>import('@/views/home/index.vue'),
+                name:'home',
+            },
+
+        ]
     },
     {
         path:'/404',

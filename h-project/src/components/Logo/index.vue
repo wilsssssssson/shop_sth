@@ -11,7 +11,7 @@
 
 <style scoped lang="scss">
 .img{
-    width: 100%;
+    width: 80%;
     height:50px;
     display: flex;
     align-items: center;
