@@ -10,8 +10,6 @@
             </el-aside>
             <el-container>
                 <el-header class="base-header">
-
-
                 </el-header>
                 <el-main class="base-main">Main</el-main>
             </el-container>
@@ -38,8 +36,18 @@ import Menu from '@/layout/menu/index.vue'
     }
 
     .base-header {
-        background-color: $base-aside-color 
-        
+        position: relative; 
+        background-color: $base-aside-color ;
+
+    }
+    .base-header::after {
+        content: ""; /* 必须有content属性 */
+        position: absolute; /* 伪元素绝对定位 */
+        bottom: 0; /* 定位到.base-header的底部 */
+        left: 0; /* 从左侧开始 */
+        width: 100%; /* 分割线宽度与.base-header相同 */
+        height: 1px; /* 分割线高度 */
+        background-image: linear-gradient(to right,  #ddd, transparent);
     }
 
     .base-main {

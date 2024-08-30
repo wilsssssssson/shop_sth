@@ -1,23 +1,41 @@
 <template>
     <div>
-        <el-menu>
-            <el-menu-item index="1">首页</el-menu-item>
-            <el-menu-item index="2">数据大屏</el-menu-item>
-            <el-sub-menu index="3">
-                <template #title>权限管理</template>
-                <el-menu-item index="3-1">用户管理</el-menu-item>
-                <el-menu-item index="3-2">角色管理</el-menu-item>
-                <el-menu-item index="3-3">菜单管理</el-menu-item>
+        <el-menu class="menu">
+            <template v-for="(item, index) in constantRoute">
+                <template v-if="!item.meta.hidden">
+                    <!-- 没有二级路由 -->
+                    <el-menu-item v-if="!item.children" :index="item.path">
+                        {{ item.meta.title }}
+                    </el-menu-item>
+                    <!-- 二级路由只有一个 -->
+                    <el-menu-item v-if="item.children&&item.children.length===1" :index="item.path">
+                        {{ item.children[0].meta.title }}
+                    </el-menu-item>
+                    <!-- 二级路由有两个以上 -->
+                    <el-sub-menu v-if="item.children&&item.children.length>1" :index="item.path">
+                        <template #title>
+                            {{ item.meta.title }}
+                        </template>
+                        <el-menu-item v-for="(item2,index) in item.children" :index="item2.path">
+                            {{ item2.meta.title }}
+                        </el-menu-item>
+                    </el-sub-menu>
+                </template>
 
-            </el-sub-menu>
-
-
+            </template>
         </el-menu>
     </div>
 </template>
 
 <script setup>
+import { constantRoute } from '@/router/routes';
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.menu{
+    border-right: none;
+
+}
+
+</style>

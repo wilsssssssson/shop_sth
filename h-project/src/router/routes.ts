@@ -1,20 +1,51 @@
 
-
 export const constantRoute = [
     {
         path:'/login',
         component:()=>import('@/views/login/index.vue'),
-        name:'login'
+        name:'login',
+        meta:{
+            hidden:true
+        }
     },
     {
         path:'/',
         component:()=>import('@/views/home/index.vue'),
         name:'layout',
+        meta:{
+            title:'layout',
+        },
         children:[
             {
                 path:'/',
                 component:()=>import('@/views/home/index.vue'),
                 name:'home',
+                meta:{
+                    title:'首页',
+                }
+            },
+        ]
+    },
+    {
+        path:'/test',
+        component:()=>import('@/views/test/index.vue'),
+        name:'test',
+        meta:{
+            title:'阿斯顿发放的',
+            hidden:false
+        },
+        children:[
+            {
+                path:'/children1',
+                meta:{
+                    title:'haizi1',
+                }
+            },
+            {
+                path:'/children2',
+                meta:{
+                    title:'haizi2',
+                }
             },
 
         ]
@@ -22,11 +53,18 @@ export const constantRoute = [
     {
         path:'/404',
         component:()=>import('@/views/404/index.vue'),
-        name:'404'
+        name:'404',
+        meta:{
+            hidden:true
+        }
     },
     {
         path:'/:pathMatch(.*)*',
         redirect:'/404',
-        name:'any'
+        name:'any',
+        meta:{
+            hidden:true
+        }
     }
 ]
+
