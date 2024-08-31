@@ -93,7 +93,7 @@ async function login(){
             message: timeMessage.value+'，'+userData.username,
             type: 'success',
         })
-        $router.push({ path: '/home' });
+        $router.push({ path: '/' });
     } catch (error) {
         ElMessage({
             message: (error as Error).message,

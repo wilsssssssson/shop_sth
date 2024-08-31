@@ -4,14 +4,14 @@
             <el-aside width="200px" class="base-aside">
                 <Logo />
                 <Menu></Menu>
-
-               
-
             </el-aside>
             <el-container>
                 <el-header class="base-header">
+        
                 </el-header>
-                <el-main class="base-main">Main</el-main>
+                <el-main class="base-main">
+                    <router-view></router-view>
+                </el-main>
             </el-container>
         </el-container>
     </div>
