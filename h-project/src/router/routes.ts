@@ -17,18 +17,18 @@ export const constantRoute = [
             hidden:true
         },
         // 数据大屏二级路由显示就用这个
-        // children:[
-        //     {
-        //         path:'/screen1',
-        //         component:()=>import('@/views/screen/index.vue'),
-        //         name:'screen1',
-        //         meta:{
-        //             title:'数据大屏',
-        //             hidden:false,
-        //             icon:'DataLine'
-        //         } 
-        //     }
-        // ]
+        children:[
+            {
+                path:'/screen1',
+                component:()=>import('@/views/screen/index.vue'),
+                name:'screen1',
+                meta:{
+                    title:'数据大屏',
+                    hidden:false,
+                    icon:'DataLine'
+                } 
+            },
+        ]
     },
     {
         path:'/home',
@@ -36,7 +36,7 @@ export const constantRoute = [
         name:'home',
         meta:{
             title:'首页',
-            icon:'Plus'
+            icon:'House'
         }
     },
     {
@@ -65,7 +65,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/user/index.vue'),
                 meta:{
                     title:'用户管理',
-                    icon:'Plus',
+                    icon:'User',
                     hidden:false
                 }
             },
@@ -75,7 +75,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/role/index.vue'),
                 meta:{
                     title:'角色管理',
-                    icon:'Plus',
+                    icon:'Pointer',
                     hidden:false
                 }
             },
@@ -85,7 +85,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/permission/index.vue'),
                 meta:{
                     title:'菜单管理',
-                    icon:'Plus',
+                    icon:'Menu',
                     hidden:false
                 }
             },
@@ -100,7 +100,7 @@ export const constantRoute = [
         meta:{
             title:'商品管理',
             hidden:false,
-            icon:'Lock'
+            icon:'ShoppingCart'
         },
         children:[
             {
@@ -109,7 +109,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/user/index.vue'),
                 meta:{
                     title:'SPU管理',
-                    icon:'Plus',
+                    icon:'Files',
                     hidden:false
                 }
             },
@@ -119,7 +119,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/role/index.vue'),
                 meta:{
                     title:'品牌管理',
-                    icon:'Plus',
+                    icon:'PriceTag',
                     hidden:false
                 }
             },
@@ -129,7 +129,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/permission/index.vue'),
                 meta:{
                     title:'属性管理',
-                    icon:'Plus',
+                    icon:'ShoppingBag',
                     hidden:false
                 }
             },
@@ -139,7 +139,7 @@ export const constantRoute = [
                 component:()=>import('@/views/acl/permission/index.vue'),
                 meta:{
                     title:'SKU管理',
-                    icon:'Plus',
+                    icon:'Folder',
                     hidden:false
                 }
             },
