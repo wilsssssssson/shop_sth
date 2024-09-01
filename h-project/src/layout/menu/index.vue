@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-menu class="menu" :router="true">
+        <el-menu class="menu" :router="true"  :default-active="$route.path" >
             <template v-for="(item, index) in constantRoute">
                 <template v-if="!item.meta.hidden">
                     <template v-if="item.path === '/'">
@@ -10,7 +10,9 @@
                                 <el-icon>
                                     <component :is="item2.meta.icon"></component>
                                 </el-icon>
-                                {{ item2.meta.title }}
+                                <template #title>
+                                    <span>{{ item2.meta.title }}</span>
+                                </template>
                             </el-menu-item>
                         </template>
                     </template>
@@ -20,34 +22,43 @@
                             <el-icon>
                                 <component :is="item.meta.icon"></component>
                             </el-icon>
-                            {{ item.meta.title }}
+                            <template #title>
+                                <span>{{ item.meta.title }}</span>
+                            </template>
+
                         </el-menu-item>
                         <!-- 二级路由只有一个 -->
                         <el-menu-item v-if="item.children && item.children.length === 1" :index="item.children[0].path">
                             <el-icon>
                                 <component :is="item.children[0].meta.icon"></component>
                             </el-icon>
-                            {{ item.children[0].meta.title }}
+                            <template #title>
+                                {{ item.children[0].meta.title }}
+                            </template>
+
                         </el-menu-item>
                         <!-- 二级路由有两个以上 -->
                         <el-sub-menu v-if="item.children && item.children.length > 1" :index="item.path">
+                            
                             <template #title>
                                 <el-icon>
                                     <component :is="item.meta.icon"></component>
                                 </el-icon>
-                                {{ item.meta.title }}
+                                <span> {{ item.meta.title }}</span>
+                               
                             </template>
+
                             <template v-for="(item2, index) in item.children">
                                 <el-menu-item v-if="!item2.meta.hidden" :index="item2.path">
                                     <el-icon>
                                         <component :is="item2.meta.icon"></component>
                                     </el-icon>
-                                    {{ item2.meta.title }}
+                                    <template #title>
+                                        <span>{{ item2.meta.title }}</span>
+                                    </template>
+
                                 </el-menu-item>
                             </template>
-
-
-
                         </el-sub-menu>
                     </template>
 
@@ -60,14 +71,17 @@
 
 <script setup>
 import { constantRoute } from '@/router/routes';
-import { useRouter } from 'vue-router';
+import { useRouter,useRoute } from 'vue-router';
+const $route =useRoute();
 // //使用click跳转
 //click返回的是点击菜单的实例
 // const $router = useRouter();
+// console.log($router)
 // function goRouter(vc){
 //     $router.push(vc.index);
 //     console.log(vc);
 // }
+
 </script>
 
 <style lang="scss" scoped>

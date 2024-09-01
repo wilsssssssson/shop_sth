@@ -7,10 +7,13 @@
             </el-aside>
             <el-container>
                 <el-header class="base-header">
-        
+                    <Tablebar></Tablebar>
                 </el-header>
                 <el-main class="base-main">
-                    <router-view></router-view>
+                    <div>`12`</div>
+                    <transition name="fade">
+                        <router-view></router-view>
+                    </transition>
                 </el-main>
             </el-container>
         </el-container>
@@ -20,6 +23,7 @@
 <script setup lang="ts">
 import Logo from '@/components/Logo/index.vue'
 import Menu from '@/layout/menu/index.vue'
+import Tablebar from '@/layout/tablebar/index.vue'
 </script>
 
 <style scoped lang="scss">
@@ -53,7 +57,17 @@ import Menu from '@/layout/menu/index.vue'
     .base-main {
         background-color: $base-aside-color;
         box-shadow: inset;
-        
+        .fade-enter-from{
+            opacity: 0;
+            transform: scale(0);
+        }
+        .fade-enter-active{
+            transition: all .3s ease;
+        }
+        .fade-enter-to{
+            opacity: 1;
+            transform: scale(0);
+        }
     }
 
     .base-footer {
