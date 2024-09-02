@@ -1,7 +1,6 @@
 <template>
     <div class="img">
         <img src="@\assets\images\qingque.png">
-        <p>雀门</p>
     </div>
 </template>
 
@@ -11,11 +10,9 @@
 
 <style scoped lang="scss">
 .img{
-    width: 80%;
     height:50px;
     display: flex;
     align-items: center;
-    padding-left: 25px;
     overflow: hidden;
     img{
         width:60px;

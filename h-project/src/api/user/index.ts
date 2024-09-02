@@ -10,4 +10,8 @@ enum API{
 export const reqLogin = (data:loginForm )=>request.post<any,loginResponseData >(API.LOGIN_URL,data);
 
 
-export const reqUserInfo = ()=>request.get<any,userREsponseData>(API.USERINFO_URL)
+export const reqUserInfo = (userToken:any)=>request.get<any,userREsponseData>(API.USERINFO_URL,{
+    headers:{
+        token:userToken
+    }
+})

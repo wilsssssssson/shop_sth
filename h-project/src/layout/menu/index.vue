@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-menu class="menu" :router="true"  :default-active="$route.path" >
+        <el-menu class="menu" :router="true"  :default-active="$route.path" :collapse="isfold?true:false" :collapse-transition="false">
             <template v-for="(item, index) in constantRoute">
                 <template v-if="!item.meta.hidden">
                     <template v-if="item.path === '/'">
@@ -73,6 +73,7 @@
 import { constantRoute } from '@/router/routes';
 import { useRouter,useRoute } from 'vue-router';
 const $route =useRoute();
+const isfold=defineModel();
 // //使用click跳转
 //click返回的是点击菜单的实例
 // const $router = useRouter();

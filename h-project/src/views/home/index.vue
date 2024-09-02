@@ -1,13 +1,18 @@
 <template>
     <div class="common-layout">
         <el-container style="height: 100%;">
-            <el-aside width="200px" class="base-aside">
-                <Logo />
-                <Menu></Menu>
+            <el-aside class="base-aside" :class="{ fold: isfold ? true : false }">
+                <div class="logo-top">
+                    <Logo :style="{ 'margin-left': isfold ? '7px' : '25px' }"></Logo>
+                    <p v-show="!isfold">雀门</p>
+                </div>
+
+
+                <Menu v-model="isfold"></Menu>
             </el-aside>
             <el-container>
                 <el-header class="base-header">
-                    <Tablebar></Tablebar>
+                    <Tablebar v-model="isfold"></Tablebar>
                 </el-header>
                 <el-main class="base-main">
                     <div>`12`</div>
@@ -20,10 +25,13 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="home">
 import Logo from '@/components/Logo/index.vue'
 import Menu from '@/layout/menu/index.vue'
 import Tablebar from '@/layout/tablebar/index.vue'
+import { ref } from 'vue';
+const isfold = ref(false);
+
 </script>
 
 <style scoped lang="scss">
@@ -31,40 +39,65 @@ import Tablebar from '@/layout/tablebar/index.vue'
     height: 100vh;
 
     .base-aside {
+        width: $menu-width;
         background-color: $base-aside-color;
         margin-right: 5px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        transition: all 0.5s;
+
+        .logo-top {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            
+
+        }
+
         .navigator {
             width: 100%;
+        }
+
+        &.fold {
+            width: $menu-fold-width;
         }
     }
 
     .base-header {
-        position: relative; 
+        position: relative;
         background-color: $base-aside-color ;
 
     }
+
     .base-header::after {
-        content: ""; /* 必须有content属性 */
-        position: absolute; /* 伪元素绝对定位 */
-        bottom: 0; /* 定位到.base-header的底部 */
-        left: 0; /* 从左侧开始 */
-        width: 100%; /* 分割线宽度与.base-header相同 */
-        height: 1px; /* 分割线高度 */
-        background-image: linear-gradient(to right,  #ddd, transparent);
+        content: "";
+        /* 必须有content属性 */
+        position: absolute;
+        /* 伪元素绝对定位 */
+        bottom: 0;
+        /* 定位到.base-header的底部 */
+        left: 0;
+        /* 从左侧开始 */
+        width: 100%;
+        /* 分割线宽度与.base-header相同 */
+        height: 1px;
+        /* 分割线高度 */
+        background-image: linear-gradient(to right, #ddd, transparent);
     }
 
     .base-main {
         background-color: $base-aside-color;
         box-shadow: inset;
-        .fade-enter-from{
+
+        .fade-enter-from {
             opacity: 0;
             transform: scale(0);
         }
-        .fade-enter-active{
+
+        .fade-enter-active {
             transition: all .3s ease;
         }
-        .fade-enter-to{
+
+        .fade-enter-to {
             opacity: 1;
             transform: scale(0);
         }
