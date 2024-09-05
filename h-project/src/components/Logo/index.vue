@@ -1,6 +1,7 @@
 <template>
     <div class="img">
         <img src="@\assets\images\qingque.png">
+        <p>雀门</p>
     </div>
 </template>
 
@@ -19,8 +20,9 @@
         height: 60px;
     }
     p{
+        margin-left: 3px;
         font-size: 20px;
-       
+        white-space: nowrap;
     }
 }
 

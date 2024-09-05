@@ -4,10 +4,8 @@
             <el-aside class="base-aside" :class="{ fold: isfold ? true : false }">
                 <div class="logo-top">
                     <Logo :style="{ 'margin-left': isfold ? '7px' : '25px' }"></Logo>
-                    <p v-show="!isfold">雀门</p>
+
                 </div>
-
-
                 <Menu v-model="isfold"></Menu>
             </el-aside>
             <el-container>
@@ -15,10 +13,14 @@
                     <Tablebar v-model="isfold"></Tablebar>
                 </el-header>
                 <el-main class="base-main">
-                    <div>`12`</div>
-                    <transition name="fade">
-                        <router-view></router-view>
-                    </transition>
+                    <ReFresh>
+                            <router-view v-slot="{ Component }">
+                                <transition name="fade">
+                                    <component :is="Component" />
+                                </transition>
+                            </router-view>           
+                    </ReFresh>
+
                 </el-main>
             </el-container>
         </el-container>
@@ -29,6 +31,7 @@
 import Logo from '@/components/Logo/index.vue'
 import Menu from '@/layout/menu/index.vue'
 import Tablebar from '@/layout/tablebar/index.vue'
+import ReFresh from '@/layout/refresh/index.vue'
 import { ref } from 'vue';
 const isfold = ref(false);
 
@@ -49,12 +52,8 @@ const isfold = ref(false);
             display: flex;
             width: 100%;
             align-items: center;
-            
 
-        }
 
-        .navigator {
-            width: 100%;
         }
 
         &.fold {
@@ -99,7 +98,7 @@ const isfold = ref(false);
 
         .fade-enter-to {
             opacity: 1;
-            transform: scale(0);
+            transform: scale(1);
         }
     }
 

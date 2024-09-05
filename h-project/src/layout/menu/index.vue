@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-menu class="menu" :router="true"  :default-active="$route.path" :collapse="isfold?true:false" :collapse-transition="false">
+        <el-menu class="menu" :router="true"  :default-active="$route.path" :collapse="isfold?true:false" >
             <template v-for="(item, index) in constantRoute">
                 <template v-if="!item.meta.hidden">
                     <template v-if="item.path === '/'">

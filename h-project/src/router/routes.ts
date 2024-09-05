@@ -58,6 +58,7 @@ export const constantRoute = [
             hidden:false,
             icon:'Lock'
         },
+        redirect:'/acl/user',
         children:[
             {
                 path:'/acl/user',
@@ -102,21 +103,13 @@ export const constantRoute = [
             hidden:false,
             icon:'ShoppingCart'
         },
+        redirect:'/product/trademark',
         children:[
-            {
-                path:'/product/spu',
-                name:'spu',
-                component:()=>import('@/views/acl/user/index.vue'),
-                meta:{
-                    title:'SPU管理',
-                    icon:'Files',
-                    hidden:false
-                }
-            },
+            
             {
                 path:'/product/trademark',
                 name:'trademark',
-                component:()=>import('@/views/acl/role/index.vue'),
+                component:()=>import('@/views/product/trademark/index.vue'),
                 meta:{
                     title:'品牌管理',
                     icon:'PriceTag',
@@ -126,7 +119,7 @@ export const constantRoute = [
             {
                 path:'/product/attr',
                 name:'attr',
-                component:()=>import('@/views/acl/permission/index.vue'),
+                component:()=>import('@/views/product/attr/index.vue'),
                 meta:{
                     title:'属性管理',
                     icon:'ShoppingBag',
@@ -134,9 +127,19 @@ export const constantRoute = [
                 }
             },
             {
+                path:'/product/spu',
+                name:'spu',
+                component:()=>import('@/views/product/spu/index.vue'),
+                meta:{
+                    title:'SPU管理',
+                    icon:'Files',
+                    hidden:false
+                }
+            },
+            {
                 path:'/product/sku',
                 name:'sku',
-                component:()=>import('@/views/acl/permission/index.vue'),
+                component:()=>import('@/views/product/sku/index.vue'),
                 meta:{
                     title:'SKU管理',
                     icon:'Folder',
