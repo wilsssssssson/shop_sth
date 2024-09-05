@@ -14,11 +14,11 @@
                 </el-header>
                 <el-main class="base-main">
                     <ReFresh>
-                            <router-view v-slot="{ Component }">
-                                <transition name="fade">
-                                    <component :is="Component" />
-                                </transition>
-                            </router-view>           
+                        <router-view v-slot="{ Component }">
+                            <transition name="fade">
+                                <component :is="Component" />
+                            </transition>
+                        </router-view>
                     </ReFresh>
 
                 </el-main>
@@ -27,14 +27,33 @@
     </div>
 </template>
 
+
+<script lang="ts" >
+export default {
+    name: 'Home',
+}
+</script>
+
 <script setup lang="ts" name="home">
 import Logo from '@/components/Logo/index.vue'
 import Menu from '@/layout/menu/index.vue'
 import Tablebar from '@/layout/tablebar/index.vue'
 import ReFresh from '@/layout/refresh/index.vue'
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useUserStore } from '@/store/modules/user';
+import { useRouter } from 'vue-router';
 const isfold = ref(false);
+const $router= useRouter();
 
+onMounted(() => {
+    if (!useUserStore().token) {
+        console.log('请先登录先');
+        $router.push('/login');
+    }else{
+        useUserStore().getUserInfo();
+       console.log('已登录(获取了一次信息)'); 
+    }
+})
 </script>
 
 <style scoped lang="scss">

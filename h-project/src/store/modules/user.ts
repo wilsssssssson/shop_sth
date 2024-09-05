@@ -7,8 +7,7 @@ export const useUserStore = defineStore('User',()=>{
     const token=ref(localStorage.getItem('token'));
     const userInfo=ref<Partial<userInfo>>({})
 
-    async function userLogin(data:loginForm){
-        
+    async function userLogin(data:loginForm){ 
         let result:any= await reqLogin(data)
         if (result.code===200){
             token.value=result.data.token;
@@ -20,12 +19,20 @@ export const useUserStore = defineStore('User',()=>{
     }
 
     async function getUserInfo(){
-        let result=await reqUserInfo(token.value);
+        let result=await reqUserInfo(localStorage.getItem('token'));
         userInfo.value=result.data.checkUser;
-        
+
     }
 
+    function logOut(){
+        token.value=null;
+        localStorage.removeItem('token');
+        userInfo.value={};
+    }  
+
     return{
+        logOut,
+        token,
         getUserInfo,
         userLogin,
         userInfo

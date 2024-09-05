@@ -37,6 +37,9 @@ watch(() => useSettingStore().refresh, () => {
 
 function quitFullScreen(){
     useSettingStore().isFullScreen=false;
+    if (document.fullscreenElement){
+        document.exitFullscreen();
+    }
 }
 
 </script>

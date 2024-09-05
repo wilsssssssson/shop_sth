@@ -36,7 +36,7 @@
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>退出登录</el-dropdown-item>
+                        <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -47,7 +47,7 @@
 <script setup lang="ts" name="tablebar">
 import { ref } from 'vue';
 import { useUserStore } from '@/store/modules/user.ts'
-import { useRoute } from 'vue-router'
+import { useRoute,useRouter,userouter } from 'vue-router'
 import {useSettingStore }from '@/store/setting/refresh.ts'
 
 const imgPath = ref('/src/assets/images/qingque.png')//在这里@不会解析要用/src/
@@ -57,12 +57,21 @@ function expandMenu() {
 }
 
 const $route = useRoute()
+const $router = useRouter()
 
 function refresh(){
     useSettingStore().refresh=!useSettingStore().refresh
 }
 function fullScreen(){
     useSettingStore().isFullScreen=true
+    if (!document.fullscreenElement){
+        document.documentElement.requestFullscreen();
+    }
+}
+
+function logout() {
+    useUserStore().logOut()
+    $router.push('/login')
 }
 
 </script>
