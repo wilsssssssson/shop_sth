@@ -1,34 +1,30 @@
+//usertype
+
 export interface loginForm {
     username: string,
     password: string
 }
-
-export interface dataType {
-    token: string
-}
-
-export interface loginResponseData {
+export interface responseData {
     code: number,
-    data: dataType
+    message: string,
+    ok: boolean,
 }
 
-export interface userInfo{
-    userId: number,
+export interface loginResponseData extends responseData {
+    data: string
+}
+
+export interface userInfo {
     avatar:string,
-    username: string,
-    password: string,
-    desc: string,
-    roles: string[],
     buttons:string[],
-    routes: string[],
-    token: string,
+    name:string,
+    roles:string[],
+    routes:string[],
 }
 
-export interface user{
-    checkUser:userInfo
+export interface userInfoResponseData extends responseData {   
+    data:userInfo
+
 }
 
-export interface  userREsponseData {
-    code: number,
-    data:user
-}
+

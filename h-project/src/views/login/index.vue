@@ -64,17 +64,17 @@ const passwordVaildator= (rule: any, value: any, callback: any) =>{
 };
 const userData = reactive({
     username: 'admin',
-    password: '123456'
+    password: '111111'
 });
 const rules = reactive({
     username:[{trigger:'change' , validator:userNameVaildator}],
     password:[{trigger:'change' , validator:passwordVaildator}]
 })
 
-function checkForm(resolve,reject){
+function checkForm(){
     loginFormRef.value.validate()
     .then(login)
-    .catch((error)=>{
+    .catch((error:any)=>{
         let keys = Object.keys(error);
         keys.forEach(key => {
             console.log(error[key][0]);

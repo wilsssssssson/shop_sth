@@ -29,7 +29,7 @@
 
             <el-dropdown>
                 <span class="el-dropdown-link">
-                    {{ useUserStore().userInfo.username }}
+                    {{ useUserStore().userInfo.name }}
                     <el-icon class="el-icon--right">
                         <arrow-down />
                     </el-icon>
@@ -47,7 +47,7 @@
 <script setup lang="ts" name="tablebar">
 import { ref } from 'vue';
 import { useUserStore } from '@/store/modules/user.ts'
-import { useRoute,useRouter,userouter } from 'vue-router'
+import { useRoute,useRouter} from 'vue-router'
 import {useSettingStore }from '@/store/setting/refresh.ts'
 
 const imgPath = ref('/src/assets/images/qingque.png')//在这里@不会解析要用/src/
@@ -69,8 +69,8 @@ function fullScreen(){
     }
 }
 
-function logout() {
-    useUserStore().logOut()
+async function logout() {
+    await useUserStore().logOut()
     $router.push('/login')
 }
 

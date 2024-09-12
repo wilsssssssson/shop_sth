@@ -42,17 +42,22 @@ import ReFresh from '@/layout/refresh/index.vue'
 import { onMounted, ref } from 'vue';
 import { useUserStore } from '@/store/modules/user';
 import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
 const isfold = ref(false);
 const $router= useRouter();
 
 onMounted(() => {
-    if (!useUserStore().token) {
-        console.log('请先登录先');
+    useUserStore().getUserInfo()
+    .then(()=>{
+        console.log('(获取了一次信息)'); 
+    }).catch(()=>{
+        useUserStore().clearToken();
         $router.push('/login');
-    }else{
-        useUserStore().getUserInfo();
-       console.log('已登录(获取了一次信息)'); 
-    }
+        ElMessage({
+            type: 'error',
+            message: '登录失效，请重新登录'
+        })
+    })
 })
 </script>
 
